@@ -26,8 +26,8 @@ def update_department_api(data: DepartmentUpdate = Body(...),  db: Session = Dep
     return update_department(data, db)
 
 @router.delete("/delete")
-def delete_department_api(db: Session = Depends(deps.get_db), id: str = Body(...)):
-    return remove_department(id=id, db=db)
+def delete_department_api(dept_no: str, db: Session = Depends(deps.get_db)):
+    return remove_department(id=dept_no, db=db)
 
 @router.get("/overview")
 def get_department_overview(limit: int = 10, skip: int = 0, db: Session = Depends(deps.get_db)):

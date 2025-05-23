@@ -26,7 +26,7 @@ def update_employee_api(data: EmployeeUpdate = Body(...),  db: Session = Depends
     return update_employee(data, db, emp_id)
 
 @router.delete("/delete")
-def delete_employee_api(db: Session = Depends(deps.get_db), emp_id: int = Body(...)):
+def delete_employee_api(emp_id: int, db: Session = Depends(deps.get_db)):
     return remove_employee(emp_id, db)
 
 @router.get("/all")

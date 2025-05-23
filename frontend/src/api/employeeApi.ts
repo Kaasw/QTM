@@ -24,11 +24,15 @@ export const updateEmployee = async (emp_id: number, data: EmployeeUpdate): Prom
   return response.data;
 };
 
-export const deleteEmployee = async (emp_id: number): Promise<void> => {
-  await api.delete('/employee/delete', { data: { emp_id } });
+export const deleteEmployee = async (empId: number): Promise<void> => {
+  await api.delete('http://localhost:8000/employee/delete', {
+    params: {
+      emp_id: empId, // Pass empId as a query parameter
+    },
+  });
 };
 
-export const getAllEmployees = async (limit: number, skip: number): Promise<Employee[]> => {
+export const getAllEmployees = async (limit: number, skip: number): Promise<EmployeeListResponse> => {
   const response = await api.get('/employee/all', { params: { limit, skip } });
   return response.data;
 };
@@ -38,7 +42,7 @@ export const getEmployeeCount = async (): Promise<number> => {
   return response.data.count;
 };
 
-export const searchEmployeesByName = async (name: string): Promise<EmployeeListResponse> => {
+export const searchEmployeesByName = async (name: string): Promise<Employee[]> => {
   const response = await api.get('/employee/name', {
     params: { name },
   });

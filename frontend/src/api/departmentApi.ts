@@ -33,7 +33,11 @@ export const updateDepartment = async (id: string, data: DepartmentUpdate): Prom
 };
 
 export const deleteDepartment = async (id: string): Promise<void> => {
-  await api.delete('/department/delete', { data: { id } });
+    await api.delete('http://localhost:8000/department/delete', {
+    params: {
+      dept_no: id, // Pass empId as a query parameter
+    },
+  });
 };
 
 export const getDepartmentCount = async (): Promise<number> => {

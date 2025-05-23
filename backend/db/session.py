@@ -3,7 +3,6 @@ from dotenv import load_dotenv
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy_utils import database_exists, create_database
-import mysql.connector
 import pymysql
 import os
 
@@ -11,18 +10,18 @@ import os
 
 load_dotenv()
 
-username = os.getenv("MYSQL_USER")
+username = os.getenv("MARIADB_USER")
 
-password = os.getenv("MYSQL_PASSWORD")
+password = os.getenv("MARIADB_PASSWORD")
 
-host = os.getenv("MYSQL_SERVICE_HOST")
+host = os.getenv("MARIADB_SERVICE_HOST")
 
-port = os.getenv("MYSQL_SERVICE_PORT")
+port = os.getenv("MARIADB_SERVICE_PORT")
 
-database = os.getenv("MYSQL_DATABASE")
+database = os.getenv("MARIADB_DATABASE")
 
 
-SQLALCHEMY_DATABASE_URL = f"mysql+mysqlconnector://{username}:{password}@{host}:{port}/{database}"
+SQLALCHEMY_DATABASE_URL = f"mariadb+pymysql://{username}:{password}@{host}:{port}/{database}"
 
 
 
